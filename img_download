@@ -1,0 +1,87 @@
+# -*- coding: utf-8 -*-
+import sqlite3
+import urllib.request
+import os
+import sys
+import socket
+
+#sys.setrecursionlimit(100000)
+socket.setdefaulttimeout(30)
+
+class planDB():
+    def __init__(self):
+        self.mydb = sqlite3.connect("plan.db")
+        self.cursor = self.mydb.cursor()
+        self.download = imgDOWNLOAD()
+
+    def openDB(self):
+        self.cursor.execute("pragma table_info(Faces)")
+        # print(self.cursor.fetchall())
+
+    def closeDB(self):
+        self.mydb.commit()
+        self.mydb.close()
+
+    def imglink_seek(self):
+        imglinks = self.cursor.execute("SELECT planId,stageId,img from plan_table")
+        for row in imglinks:
+            planid = row[0]
+            stageid = row[1]
+            if row[2] != "":
+                imglinklist = row[2].split(',')
+                for i in range(0, len(imglinklist) ,1):
+                    url = imglinklist[i-1][0:62]
+                    path_start = '***'
+                    cur_path = str(path_start) + str(planid)
+                    self.download.creat_folder(cur_path)
+                    cur_url_count = str(i+1)
+                    file_name = cur_path + '\\' + str(stageid) + '_' + cur_url_count + '.jpg'
+                    try:
+                        self.download.url_download(url,file_name)
+                        print('plan', planid, "stage", stageid, "the",cur_url_count, "th url is", url)
+                    except socket.timeout:
+                        count: int = 1
+                        while count <=5:
+                            try:
+                                self.download.url_download(url,file_name)
+                            except socket.timeout:
+                                err_info = 'Reloading for %d time'%count if count == 1 else 'Reloading for %d times'%count
+                                print(err_info)
+                                count += 1
+                        if count > 5:
+                            print("downloading picture fialed!")
+                    continue
+
+
+            else:
+                imglinklist = ""
+                print('plan', planid, "stage", stageid, "has no image", imglinklist)
+
+
+class imgDOWNLOAD():
+    def url_download(self,url,filename):
+        try:
+            urllib.request.urlretrieve(url, filename)
+        except OSError:
+            pass
+
+    def creat_folder(self, path):
+        folder = os.path.exists(path)
+        if not folder:
+            os.makedirs(path)
+            print('creat',path,'successfully')
+
+
+class start_process():
+    def __init__(self):
+        self.db = planDB()
+
+    def process(self):
+        self.db.openDB()
+        self.db.imglink_seek()
+        self.db.closeDB()
+
+
+main_process = start_process()
+main_process.process()
+  
