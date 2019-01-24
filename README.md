@@ -6,13 +6,13 @@ This is a project to gain information from qingxiang.com in python.
 
 + [main_post.py](https://github.com/SingularityKChen/python_for_qingxiang/blob/master/README.md#main_postpy)
 
-	- [Classes and functions](https://github.com/SingularityKChen/python_for_qingxiang/blob/master/README.md#classes_and_functions)
+	- [Classes and functions](https://github.com/SingularityKChen/python_for_qingxiang/blob/master/README.md#classes-and-functions)
 
-		* [class planDB](https://github.com/SingularityKChen/python_for_qingxiang/blob/master/README.md#class_plandb)
+		* [class planDB](https://github.com/SingularityKChen/python_for_qingxiang/blob/master/README.md#class-plandb)
 
-		* [class qingxiangplan](https://github.com/SingularityKChen/python_for_qingxiang/blob/master/README.md#class_qingxiangplan)
+		* [class qingxiangplan](https://github.com/SingularityKChen/python_for_qingxiang/blob/master/README.md#class-qingxiangplan)
 
-	- [Problems and Solutions](https://github.com/SingularityKChen/python_for_qingxiang/blob/master/README.md#problems_and_solutions)
+	- [Problems and Solutions](https://github.com/SingularityKChen/python_for_qingxiang/blob/master/README.md#problems-and-solutions)
 
 + img_download.py
 
@@ -113,4 +113,4 @@ This class is used to create a database named planDB which will store the main i
 	The whole process from create the database to gain information via qingxiang.com then show the database finally close it.
 
 
-### Problems and Solutions
+### Problems and Solutions	
