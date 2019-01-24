@@ -2,18 +2,17 @@
 
 This is a project to gain information from qingxiang.com in python.
 
-[TOC]
-INDEX
+## INDEX
 
 + [main_post.py](https://github.com/SingularityKChen/python_for_qingxiang/blob/master/README.md#main_postpy)
 
-	- [Classes and functions](https://github.com/SingularityKChen/python_for_qingxiang/blob/master/README.md#Classes_and_functions)
+	- [Classes and functions](https://github.com/SingularityKChen/python_for_qingxiang/blob/master/README.md#classes_and_functions)
 
-		* [class planDB](https://github.com/SingularityKChen/python_for_qingxiang/blob/master/README.md#class_planDB)
+		* [class planDB](https://github.com/SingularityKChen/python_for_qingxiang/blob/master/README.md#class_plandb)
 
 		* [class qingxiangplan](https://github.com/SingularityKChen/python_for_qingxiang/blob/master/README.md#class_qingxiangplan)
 
-	- [Problems and Solutions](https://github.com/SingularityKChen/python_for_qingxiang/blob/master/README.md#Problems_and_Solutions)
+	- [Problems and Solutions](https://github.com/SingularityKChen/python_for_qingxiang/blob/master/README.md#problems_and_solutions)
 
 + img_download.py
 
@@ -23,95 +22,95 @@ INDEX
 
 ### Classes and functions
 
-+ class planDB
+#### class planDB
 
-	This class is used to create a database named planDB which will store the main information of all stages in each plan.
+This class is used to create a database named planDB which will store the main information of all stages in each plan.
 
-	* openDB
+* openDB
 
-		Create table and initialize it.
+	Create table and initialize it.
 
-		**Parameters:**
+	**Parameters:**
 
-			+ planId: plan id.
+	+ planId: plan id.
 
-			+ stageId: stage id.
+	+ stageId: stage id.
 
-			+ createdTs: the time stage was writed.
+	+ createdTs: the time stage was writed.
 
-			+ prasiseCount: the number of prasise in this stage.
+	+ prasiseCount: the number of prasise in this stage.
 
-			+ commentCount: the number of comment in this stage.
+	+ commentCount: the number of comment in this stage.
 
-			+ html: the messages of this stage.
+	+ html: the messages of this stage.
 
-			+ img: the urls of additional images in this stage.
+	+ img: the urls of additional images in this stage.
 
-	* closeDB
+* closeDB
 
-		Close table after we insert all the information.
+	Close table after we insert all the information.
 
-	* insert
+* insert
 
-		Add the proper information into the database.
+	Add the proper information into the database.
 
-		**Parameters:**
+	**Parameters:**
 
-			+ plan: plan id.
-		
-			+ stage: stage id.
-		
-			+ createdtime: the time stage was writed.
-		
-			+ prasisecount: the number of prasise in this stage.
-		
-			+ commentcount: the number of comment in this stage.
-		
-			+ htmlcontent: the messages of this stage.
-		
-			+ img_urls: the urls of additional images in this stage. 
-	
-	* show
-	
-		Show the table.
+	+ plan: plan id.
 
-+ class qingxiangplan
+	+ stage: stage id.
 
-	* init
+	+ createdtime: the time stage was writed.
 
-		Some base parameters.
+	+ prasisecount: the number of prasise in this stage.
 
-		**Parameters:**
+	+ commentcount: the number of comment in this stage.
 
-			- self.db: declare database name
+	+ htmlcontent: the messages of this stage.
 
-			- self.headers: initialize the headers of json
+	+ img_urls: the urls of additional images in this stage. 
 
-			- self.planCode: stores both the name and order of the plan.
+* show
 
-	* plan_id
+	Show the table.
 
-		Input plan id and current page munber, and then get the information we need, following the insert.
+#### class qingxiangplan
 
-		Firstly we are supposed to decide whether the plan name processing is in the plan list(that's self.planCode) and then we keep current page number and current plan name. After that, we can gain our goal information via url connected by unread, urlbase and plan id. The plan id can be found by self.planCode[plan name].
+* init
 
-		**Part Of the Parameters**
+	Some base parameters.
 
-			- curplanname: the name of current plan.
+	**Parameters:**
 
-			- pgnb: the current page.
+	- self.db: declare database name
 
-			- url: the correct url of json.
+	- self.headers: initialize the headers of json
 
-			- req: the response of the require for information.
+	- self.planCode: stores both the name and order of the plan.
 
-			- soup: the json part.
+* plan_id
 
-			- pagecount: the total number of page.
+	Input plan id and current page munber, and then get the information we need, following the insert.
 
-	* process
+	Firstly we are supposed to decide whether the plan name processing is in the plan list(that's self.planCode) and then we keep current page number and current plan name. After that, we can gain our goal information via url connected by unread, urlbase and plan id. The plan id can be found by self.planCode[plan name].
 
-		The whole process from create the database to gain information via qingxiang.com then show the database finally close it.
+	**Part Of the Parameters**
+
+	- curplanname: the name of current plan.
+
+	- pgnb: the current page.
+
+	- url: the correct url of json.
+
+	- req: the response of the require for information.
+
+	- soup: the json part.
+
+	- pagecount: the total number of page.
+
+* process
+
+	The whole process from create the database to gain information via qingxiang.com then show the database finally close it.
 
 
-### Problems and Solutions	
+### Problems and Solutions
